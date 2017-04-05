@@ -1,0 +1,81 @@
+<br>
+<div class="container">
+  <h1>NoovOp Contacts</h1>
+  <hr>
+
+  <div class="row">
+
+	<!-- The list of contacts -->
+    <div class="col-6">
+      <h3>Liste des contacts</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <td><strong>#</strong></td>
+          <td><strong>Prénom</strong></td>
+          <td><strong>Nom</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let contact of contacts">
+          <td>{{contact.id}}</td>
+          <td>{{contact.firstname}}</td>
+          <td>{{contact.lastname}}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="findContact(contact.id)"><i class="fa fa-edit" title="Afficher le détail du contact"></i> Détail</button>
+            &nbsp;
+            <button class="btn btn-warning btn-sm" (click)="deleteContact(contact.id)"><i class="fa fa-trash" title="Supprimer le contact"></i> Supprimer</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+	<!-- The new contact block -->
+    <div class="col-6 new-contact">
+      <h3>{{formTitle}}</h3>
+      <form name="new-contact-form">
+        <input type="hidden" id="id" name="id" [(ngModel)]="contactInfo.name">
+
+        <div class="form-group row">
+          <label for="firstname" class="col-2 col-form-label">Prénom</label>
+          <div class="col-6">
+            <input class="form-control" type="text" id="firstname" name="firstname" [(ngModel)]="contactInfo.firstname">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="lastname" class="col-2 col-form-label">Nom</label>
+          <div class="col-6">
+            <input class="form-control" type="text" id="lastname" name = "lastname" [(ngModel)]="contactInfo.lastname">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="address" class="col-2 col-form-label">Adresse</label>
+          <div class="col-6">
+            <input class="form-control" type="text" id="address" name = "address" [(ngModel)]="contactInfo.address">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="email" class="col-2 col-form-label">Email</label>
+          <div class="col-6">
+            <input class="form-control" type="text" id="email" name = "email" [(ngModel)]="contactInfo.email">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="phone" class="col-2 col-form-label">Téléphone</label>
+          <div class="col-6">
+            <input class="form-control" type="text" id="phone" name = "phone" [(ngModel)]="contactInfo.phone">
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-sm" (click) = "addContact()" *ngIf="addButton == true"> Ajouter </button>
+        <button class="btn btn-primary btn-sm" (click) = "updateContact()" *ngIf="addButton == false"> Modifier </button>
+        <button class="btn btn-primary btn-sm" (click) = "resetContactInfo()" *ngIf="addButton == false"> Retour </button>
+      </form>
+    </div>
+  </div>
+</div>
